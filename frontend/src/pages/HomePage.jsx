@@ -16,15 +16,10 @@ export default function HomePage() {
     }
 
     useEffect(() => {
-        getgame()
-    }, [guid])
+        //getgame()
+    }, [])
     
     return <>
     <h2>Home</h2>
-    { gameObject &&
-    <>
-    <h3>{gameObject.name}</h3>
-    <div className="content" dangerouslySetInnerHTML={{__html: gameObject.description}}></div>
-    </>}
     </>
 }

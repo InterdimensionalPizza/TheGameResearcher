@@ -28,3 +28,9 @@ class Search(APIView):
         endpoint = f"https://www.giantbomb.com/api/search/?api_key={apikey}&format=json&query={search}&resources=game"
         response = requests.get(endpoint, headers={'User-Agent': 'user'})
         return Response(response.json())
+    
+class Reviews(APIView):
+    def get(self, request, gameid):
+        endpoint = f"https://www.giantbomb.com/api/user_reviews/?api_key={apikey}&filter=game:{gameid}&format=json&limit=20"
+        response = requests.get(endpoint, headers={'User-Agent': 'user'})
+        return Response(response.json())

@@ -12,3 +12,51 @@ nav {
 nav a {
   color: rgba(255, 255, 255, 0.87);
 }
+
+.searchelem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 500px;
+  height:800px;
+}
+
+.searchimg {
+  width: 500px;
+  height: 600px;
+}
+
+.searchlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gamepagegame {
+  
+}
+
+.gameheader {
+  float: right;
+  margin: 30px;
+  margin-top: 0px;
+  margin-left: 40px;
+}
+
+.gameheader > img {
+  width: 500px;
+  height: 700px;
+}
+
+.content {
+  margin-top: 5vw;
+  margin-left: 10vw;
+  margin-right: 25vw;
+}
+
+.relatedimg {
+  display: flex;
+  flex-direction: column;
+}

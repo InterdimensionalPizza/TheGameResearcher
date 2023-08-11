@@ -10,8 +10,11 @@ export default function App() {
   const [password, setPassword] = useState("");
   const [gameObject, setGameObject] = useState(null)
   const [searchObject, setSearchObject] = useState(null)
+  const [reviewsObject, setReviewsObject] = useState(null)
   const [guid, setGuid] = useState(null)
+  const [gameid, setGameId] = useState(null)
   const [inputValue, setInputValue] = useState("")
+  const [searchList, setSearchList] = useState(null)
   const navigate = useNavigate()
   const location = useLocation()
   const lastVisited = useRef()
@@ -64,7 +67,7 @@ export default function App() {
       <Link to='/wishlist'>Wishlist</Link>
       <div>
       <input placeholder="Search game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
-      <button onClick={() => {navigate(`/search`), setSearchObject(inputValue), setInputValue(""), setGameObject(null)}}>Search</button>
+      <button onClick={() => {navigate(`/search`), setSearchObject(inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>Search</button>
       </div>
       <button onClick={logout}>Log out</button>
       </>
@@ -83,6 +86,9 @@ export default function App() {
     gameObject, setGameObject,
     searchObject, setSearchObject,
     guid, setGuid,
+    searchList, setSearchList,
+    reviewsObject, setReviewsObject,
+    gameid, setGameId,
     api
   }}/>
   </div>
