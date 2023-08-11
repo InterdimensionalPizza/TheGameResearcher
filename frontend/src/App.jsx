@@ -8,6 +8,10 @@ export default function App() {
   const [user, setUser] = useState(null)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [gameObject, setGameObject] = useState(null)
+  const [searchObject, setSearchObject] = useState(null)
+  const [guid, setGuid] = useState(null)
+  const [inputValue, setInputValue] = useState("")
   const navigate = useNavigate()
   const location = useLocation()
   const lastVisited = useRef()
@@ -59,8 +63,8 @@ export default function App() {
       <Link to='/home'>Home</Link>
       <Link to='/wishlist'>Wishlist</Link>
       <div>
-      <input placeholder="Search game"></input>
-      <button>Search</button>
+      <input placeholder="Search game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
+      <button onClick={() => {navigate(`/search`), setSearchObject(inputValue), setInputValue(""), setGameObject(null)}}>Search</button>
       </div>
       <button onClick={logout}>Log out</button>
       </>
@@ -73,12 +77,13 @@ export default function App() {
     </nav>
   </header>
   <Outlet context={{
-    user,
-    setUser,
-    username,
-    setUsername,
-    password,
-    setPassword
+    user, setUser,
+    username, setUsername,
+    password, setPassword,
+    gameObject, setGameObject,
+    searchObject, setSearchObject,
+    guid, setGuid,
+    api
   }}/>
   </div>
 }
