@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, renderMatches } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { api } from "./utilities"
@@ -15,12 +15,15 @@ export default function App() {
   const [gameid, setGameId] = useState(null)
   const [inputValue, setInputValue] = useState("")
   const [searchList, setSearchList] = useState(null)
+  const [wishlist, setWishlist] = useState([])
+  const [decideguy, setdecideguy] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const lastVisited = useRef()
 
   useEffect(() => {
     whoAmI();
+    getWishlist()
   }, []);
 
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function App() {
       lastVisited.current = location.pathname;
     }
   }, [location]);
+
 
   const whoAmI = async () => {
     let token = localStorage.getItem("token")
@@ -55,6 +59,39 @@ export default function App() {
       delete api.defaults.headers.common["Authorization"]
       navigate("/login")
     }
+  }
+
+  async function getWishlist() {
+    let response = await api.get("wishlist/")
+    setWishlist([...response.data])
+  }
+
+  async function addtowishlist() {
+    let response = await api.post("games/create/", {
+        "title": gameObject.name,
+        "guid": gameObject.guid,
+        "game_id": gameObject.id,
+        "img_url": gameObject.image.original_url
+    })
+    setWishlist([...wishlist])
+    setdecideguy(!decideguy)
+  }
+
+  async function removefromwishlist() {
+    let response = await api.delete(`games/delete/${gameObject.guid}`)
+    console.log(gameObject.guid)
+    console.log(response)
+    setdecideguy(!decideguy)
+  }
+
+  function inWishlist(guid) {
+    let value = 0
+    for (let i=0; i < wishlist.length; i++) {
+      if (wishlist[i].guid == guid) {
+        value += 1
+      }
+    }
+    return value>=1
   }
   
   return <div id="app">
@@ -89,7 +126,12 @@ export default function App() {
     searchList, setSearchList,
     reviewsObject, setReviewsObject,
     gameid, setGameId,
-    api
+    api,
+    addtowishlist, removefromwishlist,
+    wishlist, setWishlist,
+    getWishlist,
+    inWishlist,
+    decideguy, setdecideguy
   }}/>
   </div>
 }

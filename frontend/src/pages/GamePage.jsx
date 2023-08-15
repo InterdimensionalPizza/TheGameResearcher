@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function GamePage() {
-    let { api, gameObject, setGameObject, guid, setGuid, gameid, setGameId, reviewsObject, setReviewsObject } = useOutletContext()
+    let { api, gameObject, setGameObject, guid, setGuid, gameid, setGameId, reviewsObject, setReviewsObject, addtowishlist, removefromwishlist, inWishlist, wishlist, decideguy, setdecideguy} = useOutletContext()
 
     async function getgame() {
         let response = await api.get(`game/${guid}`)
@@ -16,16 +16,20 @@ export default function GamePage() {
         let response = await api.get(`reviews/${gameid}`)
         console.log(response.data.results)
         setReviewsObject(response.data.results)
-        console.log(reviewsObject)
     }
 
     useEffect(() => {
         getgame()
         getreviews()
+        setdecideguy(inWishlist(guid))
     }, [])
-    
+
+    // if (gameObject) {
+    //     setdecideguy(inWishlist())
+    // }
+    console.log(decideguy)
     return <>
-    { gameObject &&
+    {gameObject &&
     <div className="gamepagegame">
         <div className="gameheader">
             <h2>{gameObject.name}</h2>
@@ -41,6 +45,7 @@ export default function GamePage() {
                 ))}</div>
             </div>
         </div>
+    <div><button onClick={decideguy ? removefromwishlist : addtowishlist} >{decideguy ? "Remove From Wishlist" : "Add To Wishlist"}</button></div>
     <div className="content" dangerouslySetInnerHTML={{__html: gameObject.description}}></div>
     { reviewsObject &&
     <>

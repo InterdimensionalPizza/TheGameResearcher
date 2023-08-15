@@ -18,8 +18,8 @@ env = dotenv_values(".env")
 apikey = env.get('apikey')
 
 class Game(APIView):
-    def get(self, request, gameid):
-        endpoint = f"https://www.giantbomb.com/api/game/{gameid}/?api_key={apikey}&format=json"
+    def get(self, request, guid):
+        endpoint = f"https://www.giantbomb.com/api/game/{guid}/?api_key={apikey}&format=json"
         response = requests.get(endpoint, headers={'User-Agent': 'user'})
         return Response(response.json())
     
@@ -30,7 +30,7 @@ class Search(APIView):
         return Response(response.json())
     
 class Reviews(APIView):
-    def get(self, request, gameid):
-        endpoint = f"https://www.giantbomb.com/api/user_reviews/?api_key={apikey}&filter=game:{gameid}&format=json&limit=20"
+    def get(self, request, game_id):
+        endpoint = f"https://www.giantbomb.com/api/user_reviews/?api_key={apikey}&filter=game:{game_id}&format=json&limit=20"
         response = requests.get(endpoint, headers={'User-Agent': 'user'})
         return Response(response.json())

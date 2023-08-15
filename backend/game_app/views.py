@@ -22,12 +22,13 @@ class SetGame(APIView):
     def post(self, request):
         wishlist = request.user.wishlist
         game_id = request.data.get('game_id')
+        guid = request.data.get('guid')
         title = request.data.get('title')
         img_url = request.data.get('img_url')
-        game = Game.objects.create(wishlist=wishlist, game_id=game_id, title=title, img_url=img_url)
+        game = Game.objects.create(wishlist=wishlist, game_id=game_id, title=title, img_url=img_url, guid=guid)
         serializedgame = GameSerializer(game)
         return Response({"gamedata": serializedgame.data}, status=HTTP_201_CREATED)
 
-    def delete(self, request):
-        request.user.wishlist.game.get(game_id=request.data.get('game_id')).delete()
+    def delete(self, request, guid):
+        request.user.wishlist.game.get(guid=guid).delete()
         return Response(status=HTTP_204_NO_CONTENT)
