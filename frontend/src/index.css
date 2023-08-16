@@ -1,27 +1,46 @@
 html {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: black;
+  /* url('https://wallpapercave.com/wp/wp3756449.jpg') */
+  background-size: cover;
 }
 
 nav {
   display: flex;
   justify-content: space-around;
+  height: 40px;
 }
 
 nav a {
   color: rgba(255, 255, 255, 0.87);
+  text-decoration: 0;
+  font-size: larger;
+  font-weight: bold;
+}
+
+nav input {
+  width: 10vw;
+}
+
+nav button {
+  height: 52%;
+  border-radius: 2px;
+  border: 0;
+}
+
+h1, .homeh2 {
+  margin: 0;
 }
 
 .searchelem {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
   border-radius: 8px;
   width: 500px;
   height:800px;
+  border: 0;
 }
 
 .searchimg {
@@ -32,6 +51,7 @@ nav a {
 .searchlist {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .gamepagegame {
@@ -45,18 +65,63 @@ nav a {
   margin-left: 40px;
 }
 
-.gameheader > img {
-  width: 500px;
-  height: 700px;
-}
-
 .content {
   margin-top: 5vw;
   margin-left: 10vw;
   margin-right: 25vw;
 }
 
+.mainimg {
+  width: 20vw;
+}
+
 .relatedimg {
   display: flex;
   flex-direction: column;
+  width: 20vw;
+}
+
+.maincontainer {
+  height: 93vh;
+  position: relative;
+}
+
+.mainsearch {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+input:focus {
+  outline: none;
+}
+
+.mainsearchbar {
+  height: 4vh;
+  width: 30vw;
+  border-radius: 10px;
+  border: none;
+  font-size: 2vh;
+  opacity: 1;
+}
+
+.mainsearchbar::placeholder {
+  font-size: 2vh;
+  opacity: .7;
+}
+
+.backgroundimg {
+  background-image: url('https://wallpapercave.com/wp/wp3756449.jpg');
+  background-size:cover;
+}
+
+.grow { 
+  transition: all .2s ease-in-out; 
+}
+  
+.grow:hover { 
+  transform: scale(1.1); 
 }

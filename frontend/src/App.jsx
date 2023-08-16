@@ -96,20 +96,21 @@ export default function App() {
   
   return <div id="app">
   <header>
-    <h1>Game Researcher</h1>
     <nav>
       {user ? (
       <>
+      <h1>Game Researcher</h1>
       <Link to='/home'>Home</Link>
       <Link to='/wishlist'>Wishlist</Link>
       <div>
-      <input placeholder="Search game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
+      <input placeholder="Search for a game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
       <button onClick={() => {navigate(`/search`), setSearchObject(inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>Search</button>
       </div>
       <button onClick={logout}>Log out</button>
       </>
       ) : (
       <>
+      <h1>Game Researcher</h1>
       <Link to='/'>Register</Link>
       <Link to='/login'>Log In</Link>
       </>
@@ -120,6 +121,7 @@ export default function App() {
     user, setUser,
     username, setUsername,
     password, setPassword,
+    inputValue, setInputValue,
     gameObject, setGameObject,
     searchObject, setSearchObject,
     guid, setGuid,
