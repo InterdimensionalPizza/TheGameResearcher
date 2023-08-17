@@ -23,15 +23,15 @@ export default function RegisterPage() {
         api.defaults.headers.common["Authorization"] = `Token ${token}`
         setUsername("")
         setPassword("")
-        navigate("/home")
+        navigate("/")
     }
     
-    return <>
-        <form className="" onSubmit={(e) => register(e)}>
-            <h2 className="">Register</h2>
-            <input className="" placeholder="Email" type="email" value={username} onChange={(e) => setUsername(e.target.value)}></input>
-            <input className="" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-            <input className="" type="submit" value="Register"></input>
+    return <div className="signlogcontainer">
+        <form className="signlog" onSubmit={(e) => register(e)}>
+            <h2 className="signlogtitle">Register</h2>
+            <input className="signloginput" placeholder="Email" type="email" value={username} onChange={(e) => setUsername(e.target.value)}></input>
+            <input className="signloginput" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <input className="signlogbutton" type="submit" value="Register"></input>
         </form>
-    </>
+    </div>
 }

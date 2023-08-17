@@ -22,16 +22,16 @@ export default function LoginPage() {
         localStorage.setItem("token", token)
         api.defaults.headers.common["Authorization"] = `Token ${token}`
         setPassword("")
-        navigate("/home")
+        navigate("/")
     }
     
     return <>
-    <div className="">
-    <form onSubmit={(e) => Login(e)}>
-        <h2 className="">Login</h2>
-        <input className="" placeholder="Email" type="email" value={username} onChange={(e) => setUsername(e.target.value)}></input>
-        <input className="" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-        <input className="" type="submit" value="Login"></input>
+    <div className="signlogcontainer">
+    <form className="signlog" onSubmit={(e) => Login(e)}>
+        <h2 className="signlogtitle">Login</h2>
+        <input className="signloginput" placeholder="Email" type="email" value={username} onChange={(e) => setUsername(e.target.value)}></input>
+        <input className="signloginput" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+        <input className="signlogbutton" type="submit" value="Login"></input>
     </form>
     </div>
 </>

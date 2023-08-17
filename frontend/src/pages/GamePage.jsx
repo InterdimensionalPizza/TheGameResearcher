@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function GamePage() {
-    let { api, gameObject, setGameObject, guid, gameid, reviewsObject, setReviewsObject, addtowishlist, removefromwishlist, inWishlist, decideguy, setdecideguy} = useOutletContext()
+    let { api, gameObject, setGameObject, guid, gameid, reviewsObject, setReviewsObject, addtowishlist, removefromwishlist, inWishlist, decideguy, setdecideguy, setGuid, setGameId, getWishlist, user, wishlist} = useOutletContext()
 
     async function getgame() {
         let response = await api.get(`game/${guid}`)
@@ -14,22 +14,29 @@ export default function GamePage() {
         let response = await api.get(`reviews/${gameid}`)
         console.log(response.data.results)
         setReviewsObject(response.data.results)
+        if (gameid == null) {
+            setGuid(localStorage.getItem("guid"))
+            setGameId(localStorage.getItem("game_id"))
+        }
     }
 
     useEffect(() => {
         getgame()
         getreviews()
         setdecideguy(inWishlist(guid))
-    }, [])
+    }, [guid, gameid, wishlist])
 
-    // if (gameObject) {
-    //     setdecideguy(inWishlist())
-    // }
-    console.log(decideguy)
+    useEffect(() => {
+        if (user) {
+            getWishlist()
+        }
+    }, [guid, gameid])
+    
     return <>
     {gameObject &&
     <div className="gamepagegame">
         <div className="gameheader">
+        <button className="wishlistbutton" onClick={decideguy ? removefromwishlist : addtowishlist} >{decideguy ? "Remove From Wishlist" : "Add To Wishlist"}</button>
             <h2>{gameObject.name}</h2>
             <img className="mainimg" src={gameObject.image.original_url} />
             <div>
@@ -45,7 +52,6 @@ export default function GamePage() {
                 ))}</div> </> }
             </div>
         </div>
-    <div><button onClick={decideguy ? removefromwishlist : addtowishlist} >{decideguy ? "Remove From Wishlist" : "Add To Wishlist"}</button></div>
     { gameObject.description ? 
     <div className="content" dangerouslySetInnerHTML={{__html: gameObject.description}}></div>
     : <h2>Doesnt look like we have much data for this game, try searching another game!</h2> }

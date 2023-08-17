@@ -2,7 +2,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function SearchPage() {
-    let { api, setGuid, searchObject, searchList, setSearchList, setGameId, setGameObject } = useOutletContext()
+    let { api, setGuid, searchObject, searchList, setSearchList, setGameId, setGameObject, setSearchObject } = useOutletContext()
     let navigate = useNavigate()
 
     async function GetSearch() {
@@ -10,7 +10,8 @@ export default function SearchPage() {
         let response = await api.get(`search/${searchObject}`)
         console.log(response.data)
         setSearchList(response.data.results)
-
+        } else {
+            setSearchObject(localStorage.getItem("searchObject"))
         }
     }
 
@@ -20,7 +21,9 @@ export default function SearchPage() {
 
     function clicker(element) {
         setGuid(element.guid)
+        localStorage.setItem("guid", element.guid)
         setGameId(element.id)
+        localStorage.setItem("game_id", element.id)
         setGameObject(null)
         navigate("/game")
     }

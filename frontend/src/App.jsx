@@ -23,13 +23,10 @@ export default function App() {
 
   useEffect(() => {
     whoAmI();
-    getWishlist()
   }, []);
 
   useEffect(() => {
-    if (!user) {
-      lastVisited.current = location.pathname;
-    }
+    lastVisited.current = location.pathname;
   }, [location]);
 
 
@@ -43,11 +40,9 @@ export default function App() {
         if (lastVisited.current) {
           navigate(lastVisited.current)
         } else {
-          navigate("/home")
+          navigate("/")
         }
       }
-    } else {
-      navigate("/login")
     }
   }
 
@@ -57,7 +52,7 @@ export default function App() {
       localStorage.removeItem("token")
       setUser(null)
       delete api.defaults.headers.common["Authorization"]
-      navigate("/login")
+      navigate("/")
     }
   }
 
@@ -67,6 +62,7 @@ export default function App() {
   }
 
   async function addtowishlist() {
+    if (user) {
     let response = await api.post("games/create/", {
         "title": gameObject.name,
         "guid": gameObject.guid,
@@ -75,13 +71,20 @@ export default function App() {
     })
     setWishlist([...wishlist])
     setdecideguy(!decideguy)
+  } else {
+    alert("Looks like youre not signed in. Create an account or sign in to add games to your wishlist.")
+  }
   }
 
   async function removefromwishlist() {
+    if (user) {
     let response = await api.delete(`games/delete/${gameObject.guid}`)
     console.log(gameObject.guid)
     console.log(response)
     setdecideguy(!decideguy)
+    } else {
+      alert("Looks like youre not signed in. Create an account or sign in to add games to your wishlist.")
+    }
   }
 
   function inWishlist(guid) {
@@ -100,18 +103,24 @@ export default function App() {
       {user ? (
       <>
       <h1>Game Researcher</h1>
-      <Link to='/home'>Home</Link>
+      <Link to='/'>Home</Link>
       <Link to='/wishlist'>Wishlist</Link>
-      <div>
+      <form className="searchform" onSubmit={() => {navigate(`/search`), setSearchObject(inputValue), localStorage.setItem("searchObject", inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>
       <input placeholder="Search for a game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
-      <button onClick={() => {navigate(`/search`), setSearchObject(inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>Search</button>
-      </div>
+      <input className="searchbutton" type="submit" value="submit"/>
+      </form>
       <button onClick={logout}>Log out</button>
       </>
       ) : (
       <>
       <h1>Game Researcher</h1>
-      <Link to='/'>Register</Link>
+      <Link to='/'>Home</Link>
+      <Link to='/wishlist'>Wishlist</Link>
+      <form className="searchform" onSubmit={() => {navigate(`/search`), setSearchObject(inputValue), localStorage.setItem("searchObject", inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>
+      <input placeholder="Search for a game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
+      <input className="searchbutton" type="submit" value="submit"/>
+      </form>
+      <Link to='/register'>Register</Link>
       <Link to='/login'>Log In</Link>
       </>
       )}
