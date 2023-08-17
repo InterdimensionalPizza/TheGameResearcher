@@ -57,8 +57,8 @@ export default function App() {
   }
 
   async function getWishlist() {
-    let response = await api.get("wishlist/")
-    setWishlist([...response.data])
+      let response = await api.get("wishlist/")
+      setWishlist([...response.data])
   }
 
   async function addtowishlist() {

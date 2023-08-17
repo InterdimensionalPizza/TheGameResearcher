@@ -5,31 +5,42 @@ export default function GamePage() {
     let { api, gameObject, setGameObject, guid, gameid, reviewsObject, setReviewsObject, addtowishlist, removefromwishlist, inWishlist, decideguy, setdecideguy, setGuid, setGameId, getWishlist, user, wishlist} = useOutletContext()
 
     async function getgame() {
+        if (guid != null) {
         let response = await api.get(`game/${guid}`)
         console.log(response.data.results)
         setGameObject(response.data.results)
+        }
+
+        if (guid == null) {
+            setGuid(localStorage.getItem("guid"))
+        }
     }
 
     async function getreviews() {
+        if (gameid != null) { 
         let response = await api.get(`reviews/${gameid}`)
         console.log(response.data.results)
         setReviewsObject(response.data.results)
+        }
+        
         if (gameid == null) {
-            setGuid(localStorage.getItem("guid"))
             setGameId(localStorage.getItem("game_id"))
         }
     }
 
     useEffect(() => {
-        getgame()
-        getreviews()
         setdecideguy(inWishlist(guid))
     }, [guid, gameid, wishlist])
 
     useEffect(() => {
         if (user) {
-            getWishlist()
+        getWishlist()
         }
+    }, [user])
+
+    useEffect(() => {
+        getgame()
+        getreviews()
     }, [guid, gameid])
     
     return <>
