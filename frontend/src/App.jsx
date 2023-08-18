@@ -113,7 +113,7 @@ export default function App() {
     <nav>
       {user ? (
       <>
-      <h1>Game Researcher</h1>
+      <h1>The Game Researcher</h1>
       <Link to='/'>Home</Link>
       <Link to='/wishlist'>Wishlist</Link>
       <form className="searchform" onSubmit={() => {navigate(`/search`), setSearchObject(inputValue), localStorage.setItem("searchObject", inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>
@@ -124,7 +124,7 @@ export default function App() {
       </>
       ) : (
       <>
-      <h1>Game Researcher</h1>
+      <h1>The Game Researcher</h1>
       <Link to='/'>Home</Link>
       <Link to='/wishlist'>Wishlist</Link>
       <form className="searchform" onSubmit={() => {navigate(`/search`), setSearchObject(inputValue), localStorage.setItem("searchObject", inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>

@@ -16,5 +16,6 @@ export default function HomePage() {
     </form>
     </div>
     </div>
+    <footer><span>All game information provided by GiantBomb.com</span></footer>
     </div>
 }
