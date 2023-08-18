@@ -122,6 +122,7 @@ input:focus {
   height: 4vh;
   width: 30vw;
   border-radius: 2px;
+  font-weight: 50;
   border: 0;
   font-size: 30px;
   opacity: 1;

@@ -51,6 +51,7 @@ export default function App() {
     if (response.status == 204) {
       localStorage.removeItem("token")
       setUser(null)
+      setWishlist([])
       delete api.defaults.headers.common["Authorization"]
       navigate("/")
     }
@@ -69,8 +70,9 @@ export default function App() {
         "game_id": gameObject.id,
         "img_url": gameObject.image.original_url
     })
-    setWishlist([...wishlist])
-    setdecideguy(!decideguy)
+    setWishlist([...wishlist, response.data])
+    getWishlist()
+    // setdecideguy(!decideguy)
   } else {
     alert("Looks like youre not signed in. Create an account or sign in to add games to your wishlist.")
   }
@@ -81,7 +83,16 @@ export default function App() {
     let response = await api.delete(`games/delete/${gameObject.guid}`)
     console.log(gameObject.guid)
     console.log(response)
-    setdecideguy(!decideguy)
+    //setdecideguy(!decideguy)
+    let newwishlist = []
+    for (let i = 0; i < wishlist.length; i++) {
+      if (wishlist[i].guid != gameObject.guid) {
+        newwishlist.push(wishlist[i])
+      }
+      setWishlist([...newwishlist])
+      getWishlist()
+    }
+
     } else {
       alert("Looks like youre not signed in. Create an account or sign in to add games to your wishlist.")
     }

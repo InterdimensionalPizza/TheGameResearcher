@@ -30,5 +30,5 @@ class SetGame(APIView):
         return Response({"gamedata": serializedgame.data}, status=HTTP_201_CREATED)
 
     def delete(self, request, guid):
-        request.user.wishlist.game.get(guid=guid).delete()
+        request.user.wishlist.game.filter(guid=guid).delete()
         return Response(status=HTTP_204_NO_CONTENT)

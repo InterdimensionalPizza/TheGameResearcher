@@ -30,17 +30,20 @@ export default function GamePage() {
 
     useEffect(() => {
         setdecideguy(inWishlist(guid))
+        console.log("setdecideguy")
     }, [guid, gameid, wishlist])
 
     useEffect(() => {
         if (user) {
         getWishlist()
+        console.log("getwishlist")
         }
     }, [user])
 
     useEffect(() => {
         getgame()
         getreviews()
+        console.log("getgame, get reviews")
     }, [guid, gameid])
     
     return <>
