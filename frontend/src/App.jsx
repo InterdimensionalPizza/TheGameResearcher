@@ -31,17 +31,15 @@ export default function App() {
 
 
   const whoAmI = async () => {
-    let token = localStorage.getItem("token")
-    if (token) {
-      api.defaults.headers.common["Authorization"] = `Token ${token}`
-      let response = await api.get("user/info/")
-      if (response.data.email) {
-        setUser(response.data)
-        if (lastVisited.current) {
-          navigate(lastVisited.current)
-        } else {
-          navigate("/")
-        }
+    //let token = localStorage.getItem("token")
+    //api.defaults.headers.common["Authorization"] = `Token ${token}`
+    let response = await api.get("user/info/")
+    if (response.data) {
+      setUser(response.data)
+      if (lastVisited.current) {
+        navigate(lastVisited.current)
+      } else {
+        navigate("/")
       }
     }
   }
@@ -49,10 +47,10 @@ export default function App() {
   async function logout() {
     let response = await api.post("user/logout/")
     if (response.status == 204) {
-      localStorage.removeItem("token")
+      //localStorage.removeItem("token")
       setUser(null)
       setWishlist([])
-      delete api.defaults.headers.common["Authorization"]
+      //delete api.defaults.headers.common["Authorization"]
       navigate("/")
     }
   }

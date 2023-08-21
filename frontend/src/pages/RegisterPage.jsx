@@ -15,12 +15,11 @@ export default function RegisterPage() {
         })
         .catch((err) => {
             alert("Invalid credentials")
-            console.log(err)
         })
         setUser(response.data.user)
-        let token = response.data.token;
-        localStorage.setItem("token", token);
-        api.defaults.headers.common["Authorization"] = `Token ${token}`
+        //let token = response.data.token;
+        //localStorage.setItem("token", token);
+        //api.defaults.headers.common["Authorization"] = `Token ${token}`
         setUsername("")
         setPassword("")
         navigate("/")

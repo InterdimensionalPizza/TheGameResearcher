@@ -15,12 +15,11 @@ export default function LoginPage() {
         })
         .catch((err) => {
             alert("Invalid credentials")
-            console.log(err)
         })
-        let token = response.data.token 
+        //let token = response.data.token 
         setUser(response.data.user)
-        localStorage.setItem("token", token)
-        api.defaults.headers.common["Authorization"] = `Token ${token}`
+        //localStorage.setItem("token", token)
+        //api.defaults.headers.common["Authorization"] = `Token ${token}`
         setPassword("")
         navigate("/")
     }

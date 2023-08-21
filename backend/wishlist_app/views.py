@@ -13,11 +13,12 @@ from rest_framework.status import (
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from user_app.utilities import HttpOnlyToken
 
 # Create your views here.
 
 class Entire_wishlist(APIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [HttpOnlyToken]
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
