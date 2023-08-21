@@ -33,8 +33,6 @@ export default function App() {
   const whoAmI = async () => {
     //let token = localStorage.getItem("token")
     //api.defaults.headers.common["Authorization"] = `Token ${token}`
-    let cookie = document.cookie
-    if (cookie) {
     let response = await api.get("user/info/")
     if (response.data) {
       setUser(response.data)
@@ -44,7 +42,6 @@ export default function App() {
         navigate("/")
       }
     }
-  }
   }
 
   async function logout() {
