@@ -8,7 +8,6 @@ export default function HomePage() {
     let navigate = useNavigate()
     
     return <div className="backgroundimg">
-    <h2 className="homeh2">Home</h2>
     <div className="maincontainer">
     <div className="mainsearch">
     <form onSubmit={() => {navigate(`/search`), setSearchObject(inputValue), localStorage.setItem("searchObject", inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>

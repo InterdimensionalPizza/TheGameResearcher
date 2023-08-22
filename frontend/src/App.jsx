@@ -115,7 +115,7 @@ export default function App() {
       <Link to='/'>Home</Link>
       <Link to='/wishlist'>Wishlist</Link>
       <form className="searchform" onSubmit={() => {navigate(`/search`), setSearchObject(inputValue), localStorage.setItem("searchObject", inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>
-      <input placeholder="Search for a game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
+      <input placeholder=" Search for a game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
       <input className="searchbutton" type="submit" value="submit"/>
       </form>
       <button onClick={logout}>Log out</button>
@@ -126,7 +126,7 @@ export default function App() {
       <Link to='/'>Home</Link>
       <Link to='/wishlist'>Wishlist</Link>
       <form className="searchform" onSubmit={() => {navigate(`/search`), setSearchObject(inputValue), localStorage.setItem("searchObject", inputValue), setInputValue(""), setGameObject(null), setSearchList(null)}}>
-      <input placeholder="Search for a game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
+      <input placeholder=" Search for a game" value={inputValue} onChange={(event) => (setInputValue(event.target.value))}></input>
       <input className="searchbutton" type="submit" value="submit"/>
       </form>
       <Link to='/register'>Register</Link>
