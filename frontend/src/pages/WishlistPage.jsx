@@ -23,7 +23,6 @@ export default function WishlistPage() {
 
     return <> 
     {user ? <>
-    <h2>Wishlist</h2>
     {wishlist && <>
     { wishlist!="" ? <>
     <div className="searchlist" >{wishlist.map((element, index) => (

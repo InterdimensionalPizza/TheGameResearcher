@@ -10,6 +10,11 @@ nav {
   display: flex;
   justify-content: space-around;
   height: 40px;
+  align-items: middle;
+}
+
+a {
+  color: lightblue;
 }
 
 nav a {
@@ -25,6 +30,7 @@ nav input {
   margin:0;
   padding: 0;
   border: 0;
+  border-radius: 2px;
   margin-right: 2px;
 }
 
@@ -56,18 +62,20 @@ h1, .homeh2 {
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
-  width: 500px;
-  height:800px;
+  font-size: .8em;
+  width: 18vw;
+  height:50vh;
   border: 0;
 }
 
 .searchimg {
-  width: 500px;
-  height: 600px;
+  width: 18vw;
+  height: 40vh;
 }
 
 .searchlist {
   display: flex;
+  margin-top: 40px;
   flex-wrap: wrap;
   justify-content: space-around;
 }
@@ -100,7 +108,7 @@ h1, .homeh2 {
 }
 
 .maincontainer {
-  height: 91.5vh;
+  height: 94vh;
   position: relative;
 }
 
@@ -124,7 +132,7 @@ input:focus {
   border-radius: 2px;
   font-weight: 50;
   border: 0;
-  font-size: 30px;
+  font-size: 2vh;
   opacity: 1;
 }
 
