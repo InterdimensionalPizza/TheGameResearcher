@@ -196,12 +196,12 @@ input:focus {
 }
 
 .wishlistbutton {
-  height: 3vh;
-  width: 10vw;
+  height: 40px;
+  width: 150px;
   border-radius: 2px;
   border: 0;
   background-color: white;
-  font-size: medium;
+  font-size: 16px;
 }
 
 .wishlistnoaccount {
