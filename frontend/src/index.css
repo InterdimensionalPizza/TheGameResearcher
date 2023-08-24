@@ -64,13 +64,13 @@ h1, .homeh2 {
   border-radius: 8px;
   font-size: .8em;
   width: 18vw;
-  height:50vh;
+  height: 55vh;
   border: 0;
 }
 
 .searchimg {
   width: 18vw;
-  height: 40vh;
+  max-height: 48vh;
 }
 
 .searchlist {
