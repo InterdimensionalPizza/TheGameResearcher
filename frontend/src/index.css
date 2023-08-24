@@ -181,11 +181,11 @@ input:focus {
 
 .signlogbutton {
   height: 40px;
-  width: 95px;
+  width: 80px;
   border-radius: 2px;
   border: 0;
-  font-size: 22px;
-  font-weight: 25;
+  font-size: 19px;
+  font-weight: 100;
   opacity: 1;
   margin: 5px;
 }
